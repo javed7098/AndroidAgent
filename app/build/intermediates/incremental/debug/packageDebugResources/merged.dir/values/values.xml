@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="accessibility_description">AI Agent کو screen پڑھنے اور user-authorized actions انجام دینے کی اجازت دیں۔</string>
-    <string name="app_name">Android AI Agent</string>
-    <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
-        <item name="android:fontFamily">sans</item>
-        <item name="android:windowActionModeOverlay">true</item>
-    </style>
-</resources>
