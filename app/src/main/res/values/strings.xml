@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android AI Agent</string>
+    <string name="accessibility_description">AI Agent کو screen پڑھنے اور user-authorized actions انجام دینے کی اجازت دیں۔</string>
+</resources>

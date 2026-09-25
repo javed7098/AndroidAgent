@@ -1,0 +1,6 @@
+[
+    {
+        "merged": "com.example.androidaiagent.app-debug-24:/xml_accessibility_service_config.xml.flat",
+        "source": "com.example.androidaiagent.app-main-26:/xml/accessibility_service_config.xml"
+    }
+]
