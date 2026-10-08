@@ -22,18 +22,38 @@ class MainActivity : Activity() {
         title.textSize = 26f
 
         val info = TextView(this)
-        info.text = "\nAccessibility Service کو فعال کریں تاکہ Agent screen کو پڑھ اور user-authorized actions کر سکے۔"
+        info.text = "\nAccessibility Service فعال ہونی چاہیے۔"
 
-        val button = Button(this)
-        button.text = "Enable Accessibility"
-
-        button.setOnClickListener {
+        val enable = Button(this)
+        enable.text = "Enable Accessibility"
+        enable.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+        }
+
+        val home = Button(this)
+        home.text = "🏠 Test Home"
+        home.setOnClickListener {
+            AgentAccessibilityService.instance?.goHome()
+        }
+
+        val back = Button(this)
+        back.text = "◀ Test Back"
+        back.setOnClickListener {
+            AgentAccessibilityService.instance?.goBack()
+        }
+
+        val recents = Button(this)
+        recents.text = "▣ Test Recents"
+        recents.setOnClickListener {
+            AgentAccessibilityService.instance?.openRecents()
         }
 
         layout.addView(title)
         layout.addView(info)
-        layout.addView(button)
+        layout.addView(enable)
+        layout.addView(home)
+        layout.addView(back)
+        layout.addView(recents)
 
         setContentView(layout)
     }
