@@ -2,3 +2,27 @@
 build/
 app/build/
 local.properties
+
+# Private configuration and local backups
+config/
+*.env
+*.backup
+*.before_*
+*.voicebackup
+backup/
+backup_ai_agent/
+.kotlin/
+build-error.log
+build_error.log
+build_error_latest.log
+final-build.log
+final_build/
+new_build/
+install_diagnosis.txt
+repair-*.log
+javed-bubble-build.log
+
+# Local APKs and backup variants
+*.apk
+*.backup_*
+*.internet-backup

@@ -34,6 +34,16 @@ class MainActivity : Activity() {
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // JAVED_BUBBLE_START_PATCH
+        if (android.provider.Settings.canDrawOverlays(this)) {
+            try {
+                startService(
+                    android.content.Intent(this, JavedBubbleService::class.java)
+                )
+            } catch (_: Exception) {
+            }
+        }
+
         super.onCreate(savedInstanceState)
 
         val layout = LinearLayout(this)

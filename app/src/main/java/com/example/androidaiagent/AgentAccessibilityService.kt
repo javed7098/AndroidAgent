@@ -90,7 +90,7 @@ class AgentAccessibilityService : AccessibilityService() {
 
             try {
 
-                server = ServerSocket(8765)
+                server = ServerSocket(8765, 20, java.net.InetAddress.getLoopbackAddress())
 
                 while (serverRunning) {
 

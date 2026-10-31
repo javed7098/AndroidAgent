@@ -4,8 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
-    
+
     <queries>
         <package android:name="com.whatsapp" />
         <package android:name="com.google.android.youtube" />
@@ -15,7 +16,7 @@
 
     <application
         android:theme="@style/AppTheme"
-        android:label="Android AI Agent"
+        android:label="Javed Control"
         android:allowBackup="false"
         android:supportsRtl="true">
 
@@ -44,6 +45,11 @@
                 android:resource="@xml/accessibility_service_config" />
 
         </service>
+
+
+        <service
+            android:name=".JavedBubbleService"
+            android:exported="false" />
 
     </application>
 
