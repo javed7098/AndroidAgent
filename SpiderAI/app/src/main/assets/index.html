@@ -24,6 +24,14 @@ button{border:0;border-radius:10px;padding:15px;margin:5px;background:#ff354f;co
 <h1>SPIDER AI</h1>
 <div class="sub">SOLANA MARKET SCANNER · READ ONLY</div>
 </header>
+
+<div class="panel">
+  <b>FLOATING SPIDER LOGO</b>
+  <p class="muted">Show the animated draggable Spider over other apps.</p>
+  <button onclick="showSpider()">SHOW FLOATING SPIDER</button>
+  <button class="stop" onclick="hideSpider()">HIDE SPIDER</button>
+  <div id="overlayStatus" class="muted">Floating logo is off</div>
+</div>
 <div class="panel">
 <div id="status">Scanner stopped</div>
 <p class="muted">Live token data from DexScreener</p>
@@ -34,7 +42,22 @@ button{border:0;border-radius:10px;padding:15px;margin:5px;background:#ff354f;co
 <b>SCAN RESULTS</b>
 <div id="results" class="muted">Press START SCANNER</div>
 </div>
+
 <script>
+function showSpider(){
+  if(typeof Android !== 'undefined'){
+    Android.showSpider();
+    document.getElementById('overlayStatus').innerText =
+      'Allow Display over other apps if Android asks, then return here.';
+  }
+}
+function hideSpider(){
+  if(typeof Android !== 'undefined'){
+    Android.hideSpider();
+    document.getElementById('overlayStatus').innerText = 'Floating logo stopped';
+  }
+}
+
 let timer=null;
 function start(){
   if(timer)return;
