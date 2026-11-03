@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#10131d;color:#f4f5fa;font-family:Arial;padding:18px}
+header{text-align:center;padding:22px 5px}
+.logo{font-size:58px;color:#ff354f}
+h1{letter-spacing:5px;margin:5px;color:#ff354f}
+.sub{color:#9da5ba;font-size:12px}
+button{border:0;border-radius:10px;padding:15px;margin:5px;background:#ff354f;color:white;font-weight:bold}
+.stop{background:#343b4d}
+.panel{background:#1c2231;padding:15px;border-radius:13px;margin:12px 0}
+.muted{color:#aab2c6;font-size:12px}
+.token{border-bottom:1px solid #384052;padding:12px 0}
+.risk{color:#ff9b62;font-size:12px;margin-top:5px}
+.good{color:#72dda7}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">🕷️</div>
+<h1>SPIDER AI</h1>
+<div class="sub">SOLANA MARKET SCANNER · READ ONLY</div>
+</header>
+<div class="panel">
+<div id="status">Scanner stopped</div>
+<p class="muted">Live token data from DexScreener</p>
+<button onclick="start()">START SCANNER</button>
+<button class="stop" onclick="stop()">STOP</button>
+</div>
+<div class="panel">
+<b>SCAN RESULTS</b>
+<div id="results" class="muted">Press START SCANNER</div>
+</div>
+<script>
+let timer=null;
+function start(){
+  if(timer)return;
+  document.getElementById('status').innerText='Scanning Solana...';
+  Android.scan();
+  timer=setInterval(()=>Android.scan(),300000);
+}
+function stop(){
+  if(timer)clearInterval(timer);
+  timer=null;
+  Android.stop();
+  document.getElementById('status').innerText='Scanner stopped';
+}
+function showError(e){
+  document.getElementById('status').innerText='Error: '+e;
+}
+function showResults(raw){
+  let data=JSON.parse(raw);
+  document.getElementById('status').innerText='Scan complete · '+data.length+' pairs';
+  let html='';
+  data.forEach(t=>{
+    html+=`<div class="token"><b>${esc(t.name)} (${esc(t.symbol)})</b>
+    <p class="muted">Liquidity: $${Number(t.liquidity).toLocaleString()}<br>
+    Volume 24h: $${Number(t.volume).toLocaleString()}<br>
+    Change: ${Number(t.change).toFixed(2)}%<br>
+    FDV: $${Number(t.fdv).toLocaleString()}</p>
+    <div class="risk">${esc(t.flags.join(', ')||'No basic flags')}</div>
+    <div class="muted">Pair: ${esc(t.pair)}</div></div>`;
+  });
+  document.getElementById('results').innerHTML=html||'No pairs found';
+}
+function esc(s){
+  return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+</script>
+</body>
+</html>
